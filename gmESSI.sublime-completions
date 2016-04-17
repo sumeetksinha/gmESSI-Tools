@@ -371,5 +371,5 @@
                                 { "trigger": "Print_Node",                                      "contents": "[Print_Node{ node_no:= ${1:<>}}]"},
                                 { "trigger": "Add_Single_Node_Self_Weight",                     "contents": "[Add_Single_Node_Self_Weight{ node_no:= ${1:<>}, field_no:= ${2:<>}}]"},
 
-       
+        ]       
 }
