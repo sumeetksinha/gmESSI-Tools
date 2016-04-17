@@ -61,11 +61,11 @@ repository:
 
   User_Variable:
     name: variable.parameter.gmessi
-    match: \b[a-zA-Z_]*\b
+    match: \b([a-zA-Z_]|[a-zA-Z0-9])*\b
 
   GmESSI_Variable:
     name: other.parameter.gmessi
-    match:  \b[a-zA-Z_]*(:=|#)\b
+    match:  \b([a-zA-Z_]|[a-zA-Z0-9])*(:=|#)\b
 
   GmESSI_Command:
     begin: \[\s*([a-zA-Z0-9]|_)*\{
