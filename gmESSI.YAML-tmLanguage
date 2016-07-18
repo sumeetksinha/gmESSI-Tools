@@ -2,43 +2,23 @@
 ---
 name: gmESSI
 scopeName: source.gmESSI
-fileTypes: [msh, geo, gmessi]
+fileTypes: [gmessi]
 uuid: b095c611-75c4-4280-af1f-72c1cac74826
 
 patterns:
 ## first, match the global stuff
-- name: entity.other.document-start.gmssi
+- name: entity.other.document-start.gmessi
   match: ^---(?= |$)
 
-- name: entity.other.document-end.gmssi
+- name: entity.other.document-end.gmessi
   match: ^\.{3}$
 
 - include: '#MultipleLineComments'
-- include: '#LineComments'
-- include: '#GmshFunctions'
-- include: '#ExpressionFunctions'
-- include: '#NormalFunctions'
-- include: '#SelfFunctions'
+- include: '#LineComments1'
+- include: '#LineComments2'
+- include: '#General_Command'
 
-# main scope
-- include: '#Strings'
-- include: '#Chars'
-- include: '#Expression'
-- include: '#Constants'
-- include: '#OperatorKeywords'
-- include: '#ControlKeywords'
-- include: '#OtherKeywords'
-- include: '#OtherConstants'
-- include: '#Variable'
-
-- include: '#GmssiTag'
-- include: '#PhysicalGroupTag'
-- include: '#GmssiSyntaxing'
-- include: '#GmssiCommands'
-- include: '#GmshFunctions'
-
-
-# everything else should remain unmatched
+# # everything else should remain unmatched
 # - include: '#illegal'
 
 #######################################
@@ -47,131 +27,67 @@ repository:
 
 # control sequences
   MultipleLineComments:
-    name: comment.block.gmssi
-    begin: (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*)
-    end: (\*+/)
+    name: comment.block.gmessi
+    begin: \b(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*)\b
+    end: \b(\*+/)\b
 
-  LineComments:
+  LineComments1:
     match: (//.*)
     captures:
-      '1': {name: comment.line.number-sign.gmssi}
-      '2': {name: punctuation.definition.comment.line.gmssi}
+      '1': {name: comment.line.number-sign.gmessi}
+      '2': {name: punctuation.definition.comment.line.gmessi}
 
-
-# special keys (main scope)
-
-  ExpressionFunctions:
-    begin: (\b(Show|Hide|AdaptMesh|CombinedBoundary|Boundary|Extrude|Translate|BoundingBox|Duplicata|Rotate|Dilate|Symmetry|Transfinite\s+Surface|Recombine\s+Surface|Transfinite\s+Line))(\s*(\{))
-    beginCaptures:
-      '0': {name: support.function.gmssi}
-    patterns:
-    - include: '#GmshFunctions'
-    - include: '#Expression'
-    - include: '#Strings'
-    end: (\s*(\}))
-    endCaptures:
-      '0': {name: support.function.gmssi}
-
-  SelfFunctions:
-    name: support.function.gmssi
-    match: (\b(RelocateMesh|SetOrder|Print|Sleep|Call|SyatemCall|NonBlockingSystemCall|SetName|SyncModel|Macro|NewModel|Include|RefineMesh|Draw|Merge|Delete|BoundingBox|SetChanged|Exit|Abort|Show|Hide|CombinedBoundary|Boundary|Coherence|Transfinite\s+Line|Transfinite\s+Surface|Recombine\s+Surface|Recombine|)\b)
-  
-  NormalFunctions:
-    begin: (\b(Error|SetNumber|SetString|Acos|Asin|Atan|Atan2|Ceil|Cos|Cosh|Exp|Fabs|Fmod|Floor|Hypot|Log|Log10|Modulo|Rand|Round|Sqrt|Sin|Sinh|Tan|Tanh|Delete|Printf|Compound\s+Line|Compound\s+Surface|Compound\s+Volume|Split\s+Line|Physical\s+Point|Physical\s+Line|Physical\s+Surface|Physical\s+Volume)(\s*\())
-    beginCaptures:
-      '0': {name: support.function.gmssi}
-    patterns:
-    - include: '#Functions'
-    - include: '#Expression'
-    - include: '#Strings'
-    - include: '#GmssiSyntaxing'
-    end: (\s*(\)))
-    endCaptures:
-      '0': {name: support.function.gmssi}
-   
+  LineComments2:
+    match: ((\s*#.*)|())
+    captures:
+      '1': {name: comment.line.number-sign.gmessi}
+      '2': {name: punctuation.definition.comment.line.gmessi}
+ 
   Strings:
-    name: string.quoted.double.gmssi
-    match:  \"((\\\")*[^$\"])*\"
+    name: string.quoted.double.gmessi
+    match:  \b\"((\\\")*[^$\"])*\"\b
 
   Chars:
-    name: string.quoted.single.gmssi
-    match:  \'((\\\')*[^\'])*\'
-
-  GmssiTag:
-    name: keyword.other.gmssi
-    match: \s*(Phy#|Enty#)\s*
+    name: string.quoted.single.gmessi
+    match:  \b\'((\\\')*[^\'])*\'\b
 
   PhysicalGroupTag:
-    name: keyword.other.gmssi
-    match: (\s*\$.*\$\s*) 
-
-  Expression:
-    patterns:
-    - include: '#LineComments'
-    - include: '#MultipleLineComments'
-    - include: '#Constants'
-    - include: '#OperatorKeywords'
-    - include: '#ControlKeywords'
-    - include: '#OtherKeywords'
-    - include: '#OtherConstants'
-    - include: '#Variable'
+    name: keyword.other.gmessi
+    match: \b(\s*\$.*\$\s*)\b 
 
   Constants:
-    name: constant.numeric.gmssi
-    match: \b(lc|Pi|newp|newl|news|newv|newll|newsl|newreg|(-)?[0-9.]+|(-)?[0-9.]+e(-)?[0-9.]+)\b
+    name: constant.numeric.gmessi
+    match: \b((-)?[0-9.]+|(-)?[0-9.]+e(-)?[0-9.]+)\b
 
-  OperatorKeywords:
-    name: keyword.operator.gmssi
-    match: \s*(-|!|\+\+|--|\^|\*|%|\+|-|=|==|\+=|-=|\*=|/=|!=|>|>=|<|<=|&&|\|\||\?|:|#)\s*
+  User_Variable:
+    name: variable.parameter.gmessi
+    match: \b([a-zA-Z_]|[a-zA-Z0-9])*\b
 
-  ControlKeywords:
-    name: keyword.control.gmssi
-    match: \b(For|In|EndFor|If|EndIf|Else|ElseIf)\s*
+  GmESSI_Variable:
+    name: other.parameter.gmessi
+    match:  \b([a-zA-Z_]|[a-zA-Z0-9])*(:=|#)\b
 
-  OtherKeywords:
-    name: keyword.other.gmssi
-    match: \b((Layers|Return|Point|Spline|CatmullRom|Circle|Ellipse|BSpline|Ruled\s+Surface|Plane\s+Surface|Volume|Line\s+Loop|Line|Surface\s+Loop|Surface))\b
-
-  OtherConstants:
-    name: keyword.other.gmssi
-    match: \b(Mesh.SubdivisionAlgorithm|Physicals|Variables|Options|TotalMemory|Memory|Cpu|Pi|GMSH_MAJOR_VERSION|GMSH_MINOR_VERSION|GMSH_PATCH_VERSION|MPI_Size|MPI_Rank)\b
-
-  Variable:
-    name: variable.parameter.gmssi
-    match:  ([a-zA-Z_][a-zA-Z0-9]*)
-
-  GmssiSyntaxing:
-
-    begin: \"
+  GmESSI_Command:
+    begin: \[\s*([a-zA-Z0-9]|_)*\{
     beginCaptures:
-      '0': {name: string.quoted.double.gmssi}
+      '0': {name: support.function.gmessi}
     patterns:
-    - include: '#PhysicalGroupTag'
-    - include: '#GmssiCommands'
-    - include: '#Expression'
-    end: \"
+    - include: '#GmESSI_Variable'
+    # - include: $self
+    - include: '#Strings'
+    - include: '#Chars'
+    - include: '#Constants'
+    - include: '#User_Variable'
+    end: \}\s*\]
     endCaptures:
-      '0': {name: string.quoted.double.gmssi}
+      '0': {name: support.function.gmessi} 
 
-  GmssiCommands:
-    begin: \[?\s*([a-zA-Z0-9]|_)*\s*\{
-    beginCaptures:
-      '0': {name: support.function.gmssi}
+  General_Command:
     patterns:
-    - include: $self
-    - include: '#GmssiTag'
-    - include: '#Expression'
-    end: \}\s*\]?
-    endCaptures:
-      '0': {name: support.function.gmssi} 
-
-  GmshFunctions:
-    patterns:
-    - include: '#ExpressionFunctions'
-    - include: '#NormalFunctions'
-    - include: '#SelfFunctions'
+    - include: '#GmESSI_Command'
+    - include: source.python
 
   illegal:
-    name: invalid.illegal.unrecognized.gmssi
+    name: invalid.illegal.unrecognized.gmessi
     match: '[^\s}]'
 ...
