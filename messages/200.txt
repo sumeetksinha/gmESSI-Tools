@@ -1,0 +1,13 @@
+
+gmESSI-Tools Plugin version 2.0.0 (2016-05-25)
+
+Thank you for installing the gmESSI-Tools plugin!
+
+To learn about the features of this plugin and get updates, go to the Github page:
+
+https://github.com/SumeetSinha/gmESSI-Tools
+
+
+Sumeet Kumar Sinha
+Gradute Student 
+University of California Davis
