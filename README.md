@@ -22,7 +22,7 @@ gmESSI can be downloaded from git hub at [https://github.com/SumeetSinha/gmESSI]
 	d) Enter the plugin github repo https://github.com/SumeetSinha/gmESSI-Tools
 	e) Again, open Preferences/Package Control
 	f) Select Install Package
-	g) Search for gmESSSI-Tools and install it.
+	g) Search for gmESSI-Tools and install it.
 
 
 ---
