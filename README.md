@@ -3,7 +3,7 @@ gmESSI-Tools
 
 ### Usage
 
-It is an sublime plugin for autocompletion and syntax coloring of ```.gmessi``` file of [gmESSI](https://github.com/SumeetSinha/gmESSI) translator which is a finite element translator from [gmsh](http://gmsh.info/) (a three-dimensional finite element mesh generator with built-in pre- and post-procESSIng facilities) to [REAL ESSI](http://sokocalo.engr.ucdavis.edu/~jeremic/Real_ESSI_Simulator/)(UC Davis Earthquake-Soil-Structure-Interaction Simmulator).
+It is an sublime plugin for auto-completion and syntax coloring of ```.gmessi``` file of [gmESSI](https://github.com/SumeetSinha/gmESSI) translator which is a finite element translator from [gmsh](http://gmsh.info/) (a three-dimensional finite element mesh generator with built-in pre- and post-procESSIng facilities) to [REAL ESSI](http://sokocalo.engr.ucdavis.edu/~jeremic/Real_ESSI_Simulator/)(UC Davis Earthquake-Soil-Structure-Interaction Simmulator).
 
 gmESSI can be downloaded from git hub at [https://github.com/SumeetSinha/gmESSI](https://github.com/SumeetSinha/gmESSI). 
 
@@ -24,7 +24,7 @@ gmESSI can be downloaded from git hub at [https://github.com/SumeetSinha/gmESSI]
 	f) Select Install Package
 	g) Search for gmESSSI-Tools and install it.
 
-	
+
 ---
 [UCD CompGeoMech](http://sokocalo.engr.ucdavis.edu/~jeremic/)
 
