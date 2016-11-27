@@ -78,7 +78,7 @@ repository:
     - include: '#Chars'
     - include: '#Constants'
     - include: '#User_Variable'
-    end: \}\s*\]
+    end: \}\]\s*$
     endCaptures:
       '0': {name: support.function.gmessi} 
 
