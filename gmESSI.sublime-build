@@ -3,4 +3,8 @@
     "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
     "working_dir": "${file_path}",
     "selector": "source.gmESSI",
+
+    /*  add target and syntax */
+    "target": "ansi_color_build",
+    "syntax": "Packages/ANSIescape/ANSI.tmLanguage",
 }

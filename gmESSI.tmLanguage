@@ -201,4 +201,12 @@
 	<key>uuid</key>
 	<string>b095c611-75c4-4280-af1f-72c1cac74826</string>
 </dict>
+<dict>
+  <key>name</key>
+  <string>ANSI</string>
+  <key>scopeName</key>
+  <string>text.ansi</string>
+  <key>patterns</key>
+  <array></array>
+</dict>
 </plist>
