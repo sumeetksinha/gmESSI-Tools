@@ -82,7 +82,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\}\]\s*$</string>
+			<string>\}\]?</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>0</key>
@@ -95,11 +95,11 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#GmESSI_Variable</string>
+					<string>#Strings</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#Strings</string>
+					<string>#GmESSI_Variable</string>
 				</dict>
 				<dict>
 					<key>include</key>

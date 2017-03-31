@@ -18,7 +18,7 @@ patterns:
 - include: '#LineComments2'
 - include: '#General_Command'
 
-# # everything else should remain unmatched
+# everything else should remain unmatched
 # - include: '#illegal'
 
 #######################################
@@ -26,6 +26,7 @@ patterns:
 repository:
 
 # control sequences
+
   MultipleLineComments:
     name: comment.block.gmessi
     begin: \b(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*)\b
@@ -65,22 +66,23 @@ repository:
 
   GmESSI_Variable:
     name: other.parameter.gmessi
-    match:  \b([a-zA-Z_]|[a-zA-Z0-9])*(:=|#)\b
+    match: \b([a-zA-Z_]|[a-zA-Z0-9])*(:=|#)\b
 
   GmESSI_Command:
     begin: \[\s*([a-zA-Z0-9]|_)*\{
     beginCaptures:
       '0': {name: support.function.gmessi}
     patterns:
+    - include: '#Strings'
     - include: '#GmESSI_Variable'
     # - include: $self
-    - include: '#Strings'
     - include: '#Chars'
     - include: '#Constants'
     - include: '#User_Variable'
-    end: \}\]\s*$
+    end: \}\]?
     endCaptures:
-      '0': {name: support.function.gmessi} 
+      '0': {name: support.function.gmessi}
+
 
   General_Command:
     patterns:
