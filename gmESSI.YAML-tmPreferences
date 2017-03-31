@@ -1,0 +1,7 @@
+name: Comments for gmESSI
+scope: source.gmESSI
+settings:
+  shellVariables:
+  - {name: TM_COMMENT_START, value: '#'}
+  - {name: TM_COMMENT_START_2, value: //}
+uuid: b095c611-75c4-4280-af1f-72c1cac74826
